@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>boexplain.files.search &#8212; BOExplain 0.1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="API Reference" href="boexplain.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="boexplain-files-search">
+<span id="id1"></span><h1>boexplain.files.search<a class="headerlink" href="#boexplain-files-search" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-boexplain.files.search">
+<span id="boexplain-api"></span><span id="boexplain-doc"></span><h2>BOExplain API<a class="headerlink" href="#module-boexplain.files.search" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="boexplain.files.search.fmax">
+<code class="sig-prename descclassname">boexplain.files.search.</code><code class="sig-name descname">fmax</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">f</span></em>, <em class="sig-param"><span class="n">num_cols</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">cat_cols</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">columns</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">cat_alg</span><span class="o">=</span><span class="default_value">['individual_contribution']</span></em>, <em class="sig-param"><span class="n">n_trials</span><span class="o">=</span><span class="default_value">2000</span></em>, <em class="sig-param"><span class="n">runtime</span><span class="o">=</span><span class="default_value">10000</span></em>, <em class="sig-param"><span class="n">runs</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">k</span><span class="o">=</span><span class="default_value">5</span></em>, <em class="sig-param"><span class="n">random</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">correct_pred</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">increment</span><span class="o">=</span><span class="default_value">5</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">'experiment_name'</span></em>, <em class="sig-param"><span class="n">file</span><span class="o">=</span><span class="default_value">'temp.json'</span></em>, <em class="sig-param"><span class="n">return_viz</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">use_seeds_from_paper</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#boexplain.files.search.fmax" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use BOExplain to maximize the objective function.</p>
+<dl>
+<dt>data</dt><dd><p>pandas DataFrame of source, training, or inference data
+from which to derive an explanation.</p>
+</dd>
+<dt>f</dt><dd><p>Objective function to be minimized.</p>
+</dd>
+<dt>num_cols</dt><dd><p>Numerical columns over which to derive an explanation.</p>
+</dd>
+<dt>cat_cols</dt><dd><p>Categorical columns over which to derive an explanation.</p>
+</dd>
+<dt>columns</dt><dd><p>Columns over which to derive an explanation.</p>
+</dd>
+<dt>cat_alg</dt><dd><dl class="simple">
+<dt>Algorithms to handle categorical parameters. Can be</dt><dd><ul class="simple">
+<li><p>‘individual_contribution’</p></li>
+<li><p>‘categorical’</p></li>
+<li><p>‘categorical_warm_start’</p></li>
+</ul>
+</dd>
+</dl>
+<p>See the paper for details.</p>
+</dd>
+<dt>n_trials</dt><dd><p>Maximum number of trials to perform during a run.</p>
+</dd>
+<dt>runtime</dt><dd><p>Maximum allowed time for a run in seconds.</p>
+</dd>
+<dt>runs</dt><dd><p>Number of runs to perform.</p>
+</dd>
+<dt>k</dt><dd><p>Number of TPE candidates to consider. (deprecated)</p>
+</dd>
+<dt>random</dt><dd><p>If True, perform a run using random search to
+find the constraint parameters.</p>
+</dd>
+<dt>correct_pred</dt><dd><p>If provided, will compute f-score, precision, recall,
+and jaccard similarity of the found predicates and
+the correct predicate</p>
+</dd>
+<dt>increment</dt><dd><p>How frequently (in seconds) to log results when finding the best
+result in each increment.</p>
+</dd>
+<dt>name</dt><dd><p>The name of an experiment.</p>
+</dd>
+<dt>file</dt><dd><p>File name to output statistics from the run.</p>
+</dd>
+<dt>return_viz</dt><dd><p>If True, return an Altair visualization of the objective function
+with iteration on the x-axis.</p>
+</dd>
+<dt>use_seeds_from_paper</dt><dd><p>If True, use the seeds that were used in the paper. For reproducibility.</p>
+</dd>
+</dl>
+<p>The input DataFrame filtered to contain all tuples that do not
+satisfy the explanation</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="boexplain.files.search.fmin">
+<code class="sig-prename descclassname">boexplain.files.search.</code><code class="sig-name descname">fmin</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">f</span></em>, <em class="sig-param"><span class="n">num_cols</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">cat_cols</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">columns</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">cat_alg</span><span class="o">=</span><span class="default_value">['individual_contribution']</span></em>, <em class="sig-param"><span class="n">n_trials</span><span class="o">=</span><span class="default_value">2000</span></em>, <em class="sig-param"><span class="n">runtime</span><span class="o">=</span><span class="default_value">10000</span></em>, <em class="sig-param"><span class="n">runs</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">k</span><span class="o">=</span><span class="default_value">5</span></em>, <em class="sig-param"><span class="n">random</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">correct_pred</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">increment</span><span class="o">=</span><span class="default_value">5</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">'experiment_name'</span></em>, <em class="sig-param"><span class="n">file</span><span class="o">=</span><span class="default_value">'temp.json'</span></em>, <em class="sig-param"><span class="n">return_viz</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">use_seeds_from_paper</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#boexplain.files.search.fmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use BOExplain to minimize the objective function.</p>
+<dl>
+<dt>data</dt><dd><p>pandas DataFrame of source, training, or inference data
+from which to derive an explanation.</p>
+</dd>
+<dt>f</dt><dd><p>Objective function to be minimized.</p>
+</dd>
+<dt>num_cols</dt><dd><p>Numerical columns over which to derive an explanation.</p>
+</dd>
+<dt>cat_cols</dt><dd><p>Categorical columns over which to derive an explanation.</p>
+</dd>
+<dt>columns</dt><dd><p>Columns over which to derive an explanation.</p>
+</dd>
+<dt>cat_alg</dt><dd><dl class="simple">
+<dt>Algorithms to handle categorical parameters. Can be</dt><dd><ul class="simple">
+<li><p>‘individual_contribution’</p></li>
+<li><p>‘categorical’</p></li>
+<li><p>‘categorical_warm_start’</p></li>
+</ul>
+</dd>
+</dl>
+<p>See the paper for details.</p>
+</dd>
+<dt>n_trials</dt><dd><p>Maximum number of trials to perform during a run.</p>
+</dd>
+<dt>runtime</dt><dd><p>Maximum allowed time for a run in seconds.</p>
+</dd>
+<dt>runs</dt><dd><p>Number of runs to perform.</p>
+</dd>
+<dt>k</dt><dd><p>Number of TPE candidates to consider. (deprecated)</p>
+</dd>
+<dt>random</dt><dd><p>If True, perform a run using random search to
+find the constraint parameters.</p>
+</dd>
+<dt>correct_pred</dt><dd><p>If provided, will compute f-score, precision, recall,
+and jaccard similarity of the found predicates and
+the correct predicate</p>
+</dd>
+<dt>increment</dt><dd><p>How frequently (in seconds) to log results when finding the best
+result in each increment.</p>
+</dd>
+<dt>name</dt><dd><p>The name of an experiment.</p>
+</dd>
+<dt>file</dt><dd><p>File name to output statistics from the run.</p>
+</dd>
+<dt>return_viz</dt><dd><p>If True, return an Altair visualization of the objective function
+with iteration on the x-axis.</p>
+</dd>
+<dt>use_seeds_from_paper</dt><dd><p>If True, use the seeds that were used in the paper. For reproducibility.</p>
+</dd>
+</dl>
+<p>The input DataFrame filtered to contain all tuples that do not
+satisfy the explanation</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">BOExplain</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="boexplain.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">boexplain.files.search</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="boexplain.html">API Reference</a><ul>
+      <li>Previous: <a href="boexplain.html" title="previous chapter">API Reference</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Brandon Lockhart.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.4.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/api_reference/boexplain.files.search.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
